@@ -1,0 +1,126 @@
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="contact-form">
+            {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+            {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+            {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                
+                <h1>Detail Device </h1>
+                <div class="form-group">
+                    <h4>Device name: {{deviceData.name}}</h4>
+                    <h4>Logic: {{switchData.name}}</h4>
+                    {{#ifEqual deviceData.data "off"}}
+                        <h4>Available Status: OFF</h4>
+                        <a href="/staff/turnOn2/{{deviceId}}" class="btn btn-outline-success" role="button">Turn On</a>
+                    {{else}}
+                        <h4>Available Status: ON</h4>
+                        <a href="/staff/turnOff2/{{deviceId}}" class="btn btn-outline-danger" role="button">Turn Off</a>
+                    {{/ifEqual}}
+
+                </div>
+               
+                <h5>&nbsp;&nbsp;</h5>
+                <h1>Countdow</h1>
+                    <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">#</th>
+                                <th style="width: 20%;">Time Countdown</th>
+                                <th style="width: 20%;">Available Device Status</th>
+                                <th style="width: 20%;">Active</th>
+                                <th style="width: 20%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>		
+                            {{#each logicCountdown}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{this.time}}</td>
+                                    <td>
+                                        {{#ifEqual this.switch_logic_id.status_on_off 1}}
+                                            <h7>OFF</h7>
+                                        {{else}}
+                                             <h7>ON</h7>
+                                        {{/ifEqual}}
+                                    </td>
+                                    <td>
+                                        {{#ifEqual this.active 1}}
+                                            <h7>Device is not Active</h7>
+                                        {{else}}
+                                             <h7>Device is Active</h7>
+                                        {{/ifEqual}}
+                                    </td>
+                                    <td>
+                                        <a href="/staff/editCountdown/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button">Edit</a>
+                                        {{#ifEqual this.time '00:00'}}
+
+                                        {{else}}
+                                            {{#ifEqual this.active 1}}
+                                                <a href="/staff/activeLogic/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button">Active</a>
+                                            {{else}}
+                                                <a href="/staff/deactiveLogic/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button">Deactive</a>
+                                            {{/ifEqual}}
+                                        {{/ifEqual}}
+                                        
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+                <h5>&nbsp;&nbsp;</h5>
+                <h1>
+                    Schedule: 
+                    {{logicSchedule.length}} / 
+                    <a href="/staff/addSchedule/{{deviceId}}/{{switchData._id}}" class="btn btn-outline-success" role="button">Add New Schedule</a>
+                </h1>
+                    <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">#</th>
+                                <th style="width: 30%;">Day</th>
+                                <th style="width: 30%;">Time</th>
+                                <th style="width: 15%;">ON/OFF</th>
+                                <th style="width: 40%;">Active</th>
+                                <th style="width: 30%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>		
+                            {{#each logicSchedule}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{this.day}}</td>
+                                    <td>{{this.time}}</td>
+                                    <td>
+                                        {{#ifEqual this.device_status 1}}
+                                            <h7>OFF</h7>
+                                        {{else}}
+                                            <h7>ON</h7>    
+                                        {{/ifEqual}}
+                                    </td>
+                                    <td>
+                                        {{#ifEqual this.active 1}}
+                                            <h7>Device is not Active</h7>
+                                        {{else}}
+                                            <h7>Device is Active</h7>
+                                        {{/ifEqual}}
+                                    </td>
+                                    <td>
+                                        <a href="/staff/deleteLogic/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button"
+                                        onclick="return confirm('Do you want to delete this event ?' )"
+                                        >Delete</a>
+                                        {{#ifEqual this.active 1}}
+                                            <a href="/staff/activeLogic/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button">Active</a>
+                                        {{else}}
+                                            <a href="/staff/deactiveLogic/{{../deviceId}}/{{this._id}}" class="btn btn-outline-success" role="button">Deactive</a>
+                                        {{/ifEqual}}
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>

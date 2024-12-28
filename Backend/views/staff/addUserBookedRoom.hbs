@@ -1,0 +1,20 @@
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="contact-form">
+                        <h1>Enter User</h1>
+                        {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                        {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                        {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                        <form action="" method="post" > 
+                            <div class="form-group">
+                                <label for="inputSubject">Email</label>
+                                <input type="text" class="form-control" name="user_email" required>
+                            </div> 
+                            <button type="submit" value="Add" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

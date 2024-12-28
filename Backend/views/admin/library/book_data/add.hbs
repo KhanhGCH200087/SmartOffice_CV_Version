@@ -1,0 +1,29 @@
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="contact-form">
+                        <h1>Enter Book Details</h1>
+                        {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                        {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                        {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                        <form action="/bookdata/add" method="post" > 
+                            <div class="form-group">
+                                <label for="inputSubject">Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSubject">RFID</label>
+                                <input type="text" class="form-control" name="rfid_book" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSubject">Note</label>
+                                <input type="text" class="form-control" name="note" required>
+                            </div>    
+                            
+                            <button type="submit" value="Add" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

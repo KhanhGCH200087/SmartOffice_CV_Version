@@ -1,0 +1,94 @@
+
+        <div class="container-xl">
+            <div class="table-responsive">
+                
+            <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                                {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                                {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                                <h2><b>Active Room: {{active_list.length}}</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/roomtablebooked/add" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%;">#</th>
+                                <th style="width: 20%;">Room</th>
+                                <th style="width: 10%;">Table Quantity</th>
+                                <th style="width: 20%;">Note</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each active_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ room.name }}</td>
+                                    <td>{{ table_quantity }}</td>
+                                    <td>{{note}}</td>
+                                    <td>
+                                        <a href="/roomtablebooked/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/roomtablebooked/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this room: {{room.name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/roomtablebooked/deactive/{{_id}}" class="btn btn-outline-success" role="button">Deactive</a>
+                                        <a href="/roomtablebooked/tableList/{{_id}}" class="btn btn-outline-success" role="button">Tables</a>
+
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b>Deactive Room: {{active_list.length}}</b></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%;">#</th>
+                                <th style="width: 20%;">Room</th>
+                                <th style="width: 10%;">Table Quantity</th>
+                                <th style="width: 20%;">Note</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each deactive_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ room.name }}</td>
+                                    <td>{{ table_quantity }}</td>
+                                    <td>{{note}}</td>
+                                    <td>
+                                        <a href="/roomtablebooked/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/roomtablebooked/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this room: {{room.name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/roomtablebooked/active/{{_id}}" class="btn btn-outline-success" role="button">Active</a>
+                                        <a href="/roomtablebooked/tableList/{{_id}}" class="btn btn-outline-success" role="button">Tables</a>
+
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>

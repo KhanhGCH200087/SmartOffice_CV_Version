@@ -1,0 +1,57 @@
+
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                                {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                                {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                                <h2><b>Total Device: {{list.length}}</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/device/add" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New Device</span></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                              <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 7%;">#</th>
+                                <th style="width: 40%;">Device Name</th>
+                                <th style="width: 25%;">Type of Device</th>
+                                <th style="width: 10%;">Active</th>
+                                <th style="width: 30%;"> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ name }}</td>
+                                    <td>{{ type }}</td>
+                                    <td>
+                                        {{#ifEqual this.active 2 }}
+                                            <img src= "https://storage.needpix.com/rsynced_images/button-29286_1280.png" width="30" height="30">
+                                        {{else}}
+                                            <img src= "https://storage.needpix.com/rsynced_images/error-24842_1280.png" width="30" height="30">
+                                        {{/ifEqual}}
+                                    </td>
+                                    <td>
+                                        <a href="/device/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/device/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this device: {{name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/device/detail/{{_id}}" class="btn btn-outline-success" role="button">Details</a>
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>

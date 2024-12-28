@@ -1,0 +1,95 @@
+
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                                {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                                {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                                <h2><b>List of Active Department: {{active_list.length}}</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/department/add" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New Department</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th style="width: 30%;">Department Name</th>
+                                <th style="width: 20%;">Description</th>
+                                <th style="width: 20%;">Attendance Device</th>
+                                <th style="width: 25%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each active_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ name }}</td>
+                                    <td style="word-wrap: break-word; white-space: normal;">{{ description }}</td>
+                                    <td>{{device.name}}</td>
+                                    <td>
+                                        <a href="/department/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/department/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this department: {{name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/department/deactive/{{_id}}" class="btn btn-outline-success" role="button">Deactive</a>
+                                        <a href="/department/addRoom/{{_id}}" class="btn btn-outline-success" role="button">New Room</a>
+                                        <a href="/department/roomList/{{_id}}" class="btn btn-outline-success" role="button">List's Room</a>
+
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b>List of Deactive Device: {{deactive_list.length}}</b></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th style="width: 30%;">Department Name</th>
+                                <th style="width: 20%;">Description</th>
+                                <th style="width: 20%;">Attendance Device</th>
+                                <th style="width: 25%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each deactive_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ name }}</td>
+                                    <td >{{ description }}</td>
+                                    <td>{{device.name}}</td>
+                                    <td>
+                                        <a href="/department/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/department/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this department: {{name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/department/active/{{_id}}" class="btn btn-outline-success" role="button">Active</a>
+                                        <a href="/department/addRoom/{{_id}}" class="btn btn-outline-success" role="button">New Room</a>
+                                        <a href="/department/roomList/{{_id}}" class="btn btn-outline-success" role="button">List's Room</a>
+
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>

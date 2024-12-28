@@ -1,0 +1,149 @@
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="contact-form">
+            {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+            {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+            {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+            
+            {{#ifEqual checkHost "yes"}}
+                <div class="col-sm-6">
+                    <h1>Actions: </h1>
+                    <a href="/staff/deleteBookedRoom/{{detail._id}}" class="btn btn-outline-success" role="button" 
+                    onclick="return confirm('Do you want to delete this room event: {{detail.room.name}} ?' )">Delete</a>
+                    <a href="/staff/editBookedRoom/{{detail._id}}" class="btn btn-outline-success" role="button">Edit</a>
+                    <a href="/staff/addUserBookedRoom/{{detail._id}}" class="btn btn-outline-success" role="button">Add User</a>
+                </div> 
+            {{else}}   
+
+            {{/ifEqual}}
+
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2><b>Detail of Room</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Name</th>
+                            <th style="width: 50%;">Floor</th>
+                        </tr>
+                    </thead>
+                    <tbody>		
+                            <tr>
+                                <td>{{ detail.room.name }}</td>
+                                <td >{{ detail.room.floor }}</td>
+                            </tr> 
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2><b>Time</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Day</th>
+                            <th style="width: 40%;">Time Start</th>
+                            <th style="width: 40%;">Time End</th>
+                        </tr>
+                    </thead>
+                    <tbody>		
+                            <tr>
+                                <td>{{ detail.day }}</td>
+                                <td>{{ detail.time_start }}</td>
+                                <td >{{ detail.time_end }}</td>
+                            </tr> 
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2><b>Other Information</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Note</th>
+                            <th style="width: 50%;">QR Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>		
+                            <tr>
+                                <td>{{ detail.note }}</td>
+                                <td>{{ detail.QR_code }}</td>
+                            </tr> 
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2><b>List of User: {{detail.user_staff.length}}</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" border="1" cellpadding="10" cellspacing="0" style="width: 100%; table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="width: 7%;">#</th>
+                            <th style="width: 37%;">Name</th>
+                            <th style="width: 45%;">Email</th>
+                            <th style="width: 23%;">RFID</th>
+                            <th style="width: 17%;">Role</th>
+                            <th style="width: 13%;">Level</th>
+                            <th style="width: 40%;">Image</th>
+                            <th style="width: 27%;">Action</th>
+                            </tr>
+                    </thead>
+                    <tbody>		
+                            {{#each detail.user_staff}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{this.user.name}}</td>
+                                    <td>{{this.user.email }}</td>
+                                    <td>{{this.user.rfid }}</td>
+                                    <td>{{this.user.role }}</td>
+                                    <td>{{this.level}}</td>
+                                    <td><img src="data:image/jpeg;base64,{{this.user.image}}" style="max-width: 150px;"></td>
+                                    {{#ifEqual ../checkHost "yes"}}
+                                        <td>
+                                            {{#ifEqual this.level 1 }}
+                                                <a href="#" class="btn btn-outline-success" role="button">None</a>
+                                            {{else}}
+                                                <a href="/staff/removeUserBookedRoom/{{this.user._id}}/{{../detail._id}}" class="btn btn-outline-success" role="button"
+                                                onclick="return confirm('Do you want to delete this user: {{this.user.name}} ?' )"
+                                                >Remove</a>
+                                            {{/ifEqual}}
+                                        </td>
+                                    {{else}}   
+                                        <td>
+                                            <a href="#" class="btn btn-outline-success" role="button">None</a>
+                                        </td>
+                                    {{/ifEqual}}
+                                </tr> 
+                            {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

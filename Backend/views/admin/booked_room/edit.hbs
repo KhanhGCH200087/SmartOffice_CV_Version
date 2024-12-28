@@ -1,0 +1,47 @@
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="contact-form">
+                        <h1>Enter Booked Room Details</h1>
+                        {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                        {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                        {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                        <form action="" method="post" > 
+                            <div class="form-group">
+                                <label for="inputSubject">Room Origin: "{{bookedData.room.name}}"</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputSubject">Choose Room</label>
+                                    {{#each roomList}}
+                                        <label><input type="radio" name="room" value="{{_id}}">{{name}}</label>
+                                    {{/each}}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputSubject">Note</label>
+                                <input type="text" class="form-control" name="note" value="{{bookedData.note}}"required>
+                            </div> 
+
+                            <div class="form-group">
+                                <label for="inputSubject">Day</label>
+                                <input type="date" class="form-control" name="day" value="{{bookedData.day}}"required>
+                            </div> 
+
+                            <div class="form-group">
+                                <label for="inputSubject">Time Start</label>
+                                <input type="time" class="form-control" name="time_start" value="{{bookedData.time_start}}"required>
+                            </div> 
+                            
+                            <div class="form-group">
+                                <label for="inputSubject">Time End</label>
+                                <input type="time" class="form-control" name="time_end" value="{{bookedData.time_end}}"required>
+                            </div> 
+
+                            <button type="submit" value="Add" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

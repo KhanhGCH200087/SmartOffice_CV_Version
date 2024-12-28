@@ -1,0 +1,86 @@
+
+        <div class="container-xl">
+            <div class="table-responsive">
+
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                                {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                                {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                                <h2><b>Free Table: {{deactive_list.length}}</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/roomtablebooked/addTable/{{main_id}}" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add Table</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                               <th>#</th>
+                                <th>Name</th>
+                                <th>Device</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each deactive_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ table_name }}</td>
+                                    <td>{{ device.name }}</td>
+                                    <td>
+                                        <a href="/roomtablebooked/editTable/{{_id}}/{{../main_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/roomtablebooked/deleteTable/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this table: {{table_name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b>Used Table: {{active_list.length}}</b></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                               <th>#</th>
+                                <th>Name</th>
+                                <th>Device</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each active_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ table_name }}</td>
+                                    <td>{{ device.name }}</td>
+                                    <td>
+                                        <a href="/roomtablebooked/editTable/{{_id}}/{{../main_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/roomtablebooked/deleteTable/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this table: {{table_name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            
+            </div>        
+        </div>

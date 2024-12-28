@@ -1,0 +1,34 @@
+
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="contact-form">
+                        <h1>Enter Details</h1>
+                        {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                        {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                        {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                        <form action="/roomtablebooked/add" method="post" > 
+                            <div class="form-group">
+                                <label for="inputSubject">Note</label>
+                                <input type="text" class="form-control" name="note" required>
+                            </div> 
+                            <div class="form-group">
+                                <label for="inputSubject">Table Quantity</label>
+                                <input type="number" class="form-control" name="table_quantity" required>
+                            </div>    
+                            <div class="form-group">
+                                <label for="inputSubject">Room</label>
+                                <select name="room_id" id="">
+                                    {{#each roomList}}
+                                        <option value="{{_id}}">
+                                            {{name}}
+                                        </option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <button type="submit" value="Add" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

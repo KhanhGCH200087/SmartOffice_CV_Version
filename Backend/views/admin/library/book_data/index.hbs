@@ -1,0 +1,90 @@
+
+        <div class="container-xl">
+            <div class="table-responsive">
+
+            <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if message}}<div class="alert alert-info"><strong>System: </strong> {{message}}</div>{{/if}}             
+                                {{#if error}}<div class="alert alert-danger"><strong>Error:</strong> {{error}}</div>{{/if}}
+                                {{#if errors}}<div class="alert alert-danger"><strong>Error:</strong> {{errors}}</div>{{/if}}
+                                <h2><b>Total Active Book: {{active_list.length}}</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/bookdata/add" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New Book</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%;">#</th>
+                                <th style="width: 30%;">Name</th>
+                                <th style="width: 20%;">RFID</th>
+                                <th style="width: 20%;">Note</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each active_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ name }}</td>
+                                    <td>{{ rfid_book }}</td>
+                                    <td>{{note}}</td>
+                                    <td>
+                                        <a href="/bookdata/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/bookdata/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this book: {{name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/bookdata/deactive/{{_id}}" class="btn btn-outline-success" role="button">Deactive</a>
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b>Total Deactive Book: {{deactive_list.length}}</b></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 6%;">#</th>
+                                <th style="width: 30%;">Name</th>
+                                <th style="width: 20%;">RFID</th>
+                                <th style="width: 20%;">Note</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">		
+                            {{#each deactive_list}}
+                                <tr>
+                                    <td>{{inc @index}}</td>
+                                    <td>{{ name }}</td>
+                                    <td>{{ rfid_book }}</td>
+                                    <td>{{note}}</td>
+                                    <td>
+                                        <a href="/bookdata/edit/{{_id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/bookdata/delete/{{_id}}" class="delete" 
+                                        onclick="return confirm('Do you want to delete this book: {{name}} ?' )"
+                                        ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="/bookdata/active/{{_id}}" class="btn btn-outline-success" role="button">Active</a>
+                                    </td>
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>

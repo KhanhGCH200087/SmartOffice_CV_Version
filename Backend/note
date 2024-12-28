@@ -1,0 +1,104 @@
+// if(device_data.detect_danger === "no"){
+            //   if(rfid_card === "null"){ //trường hợp default system, phần null này ta để module gửi lên
+            //     console.log("Default system case RFID");
+            //     return await device_message.set('null');
+
+            //   } else if(!user_data){ //User is not exist
+            //       console.log("User is not exist");
+            //       //trường hợp không đúng người dùng thì lưu vào device_log
+            //       const log = "Unauthorize of user with RFID: "+ rfid_card;
+            //       const day = formatDate(new Date());
+            //       const time = formatTime(new Date());
+            //       const type = 'danger';
+            //       find_device.device_log.push({log, day, time, type});
+            //       const newErrorLog = await find_device.save();
+            //       if(newErrorLog){
+            //           console.log("Unauthorize User Error Log is created");
+            //       }
+            //       //send message to led of device through device_mesage
+            //       await device_message.set('Denied Access');
+
+            //   } else if(user_data.active == 1){ //user is not active
+            //       console.log("User is not active");
+            //       const log = "User "+  user_data.name + " is not active but try to access";
+            //       const day = formatDate(new Date());
+            //       const time = formatTime(new Date());
+            //       const type = 'danger';
+            //       find_device.device_log.push({log, day, time, type});
+            //       const newErrorLog = await find_device.save();
+            //       if(newErrorLog){
+            //         console.log("Unauthorize User Error Log is created");
+            //       }
+            //     //send message to led of device through device_mesage
+            //       await device_message.set('Denied Access');
+
+            //   } else if(user_data){  
+            //       const room_data = await RoomModel.findById(user_data.room_id);
+            //       console.log("User is ok");
+            //       if(!room_data || room_data.active == 1){//Room problem
+            //           console.log("Cannot enter because of room is not active or exist");
+            //           //lưu vào bảng lỗi
+            //           const log = "Room is not active or exist so user "+ user_data.name+" with RFID " +rfid_card+ " cannot enter";
+            //           const day = formatDate(new Date());
+            //           const time = formatTime(new Date());
+            //           const type = 'danger';
+            //           find_device.device_log.push({log, day, time, type});
+            //           const newErrorLog = await find_device.save();
+            //           if(newErrorLog){
+            //               console.log("Unauthorize User Error Log is created");
+            //           }
+            //           //send message to led of device through device_mesage
+            //           await device_message.set('Denied Access');
+            //       }else{ 
+            //           const department_data = await DepartmentModel.findById(room_data.department);
+            //           //if(!department_data || department_data.active == 1 || !department_data.device.equals(find_device._id) ){//Department problem
+            //           if(!department_data || department_data.active == 1 ){
+            //               console.log("Cannot enter because of department")
+            //               //lưu vào bảng lỗi 
+            //               const log = "Department is not active or exist so user "+user_data.name+" with RFID " +rfid_card+ " cannot enter";
+            //               const day = formatDate(new Date());
+            //               const time = formatTime(new Date());
+            //               const type = 'danger';
+            //               find_device.device_log.push({log, day, time, type});
+            //               const newErrorLog = await find_device.save();
+            //               if(newErrorLog){
+            //                   console.log("User cannot enter Department because of Department problem");
+            //               }
+            //               //send message to led of device
+            //               await device_message.set('Denied Access');
+            //           }else{ //Enter Success
+            //               console.log("Welcome user: ", user_data.name);
+            //               //user dùng đúng thẻ -> mở cửa (thay đổi value trên Firebase), lưu vào hệ thống điểm danh access_log
+            //               //Write to Access_log
+            //               const newAccessLog = await AccessLogModel.create({
+            //                   user_id: user_data._id,
+            //                   department_id: department_data._id,
+            //                   rfid: rfid_card,
+            //                   day: formatDate(new Date()),
+            //                   time: formatTime(new Date()),
+            //                   image: device_data.image
+            //               });
+            //               const log = "User "+user_data.name+" with RFID " +rfid_card+ " enter "+ department_data.name + " successfully";
+            //               const day = formatDate(new Date());
+            //               const time = formatTime(new Date());
+            //               const type = 'normal';
+            //               find_device.device_log.push({log, day, time, type});
+            //               const newDeviceLog = await find_device.save();
+            //               if(newAccessLog && newDeviceLog){
+            //                   console.log("New access log is created");
+            //               }
+            //               //change data in firebase
+            //               await device_message.set('Welcome Staff');
+            //           }
+            //       }
+            //   }
+            // } else if(device_data.detect_danger === "yes"){
+            //   return console.log("Trường hợp: Có nguy hiểm, bật đèn, mở cửa, ......");
+            // }
+
+
+// <div class="row">
+//     <input class="form-control" id="myInput" type="text" placeholder="Search..">
+// </div>
+
+// id="myTable"

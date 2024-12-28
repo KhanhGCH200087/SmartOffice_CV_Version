@@ -56,7 +56,7 @@ app.use(session({
 var mongoose = require('mongoose');
 //1B. set mongodb connection string
 //Note1: Database name: SmartOffice
-var database = "mongodb+srv://phamminhkhanh6011:khanh@databasever01.nj4y6.mongodb.net/SmartOffice";
+var database = "";
 //1C. connect to mongodb
 mongoose.connect(database)
   .then(() => console.log('connect to db sucess'))
